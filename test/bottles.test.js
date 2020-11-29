@@ -1,4 +1,4 @@
-import { BottleVerse } from '../lib/bottles';
+import { BottleVerse, ngettext } from '../lib/bottles';
 
 const testPlaysVerseRole = rolePlayer => {
   test('plays verse role', () => {
@@ -6,8 +6,50 @@ const testPlaysVerseRole = rolePlayer => {
   });
 };
 
+describe('ngettext', () => {
+  testPlaysVerseRole(BottleVerse);
+
+  test('upper', () => {
+    const expected = 'plural';
+    expect(ngettext(2, 'plural', 'singular')).toBe(expected);
+  });
+
+  test('lower', () => {
+    const expected = 'singular';
+    expect(ngettext(1, 'plural', 'singular')).toBe(expected);
+  });
+});
+
 describe('BottleVerse', () => {
   testPlaysVerseRole(BottleVerse);
+
+
+  test('String title', () => {
+    const expected = 'Ben l’architecte';
+    expect('ben l’architecte'.title()).toBe(expected);
+  });
+
+
+  test('_getNumber many', () => {
+    const expected ='2 bottles of beer';
+    expect(BottleVerse._getBottles(2)).toBe(expected);
+  });
+
+  test('_getNumber one', () => {
+    const expected ='1 bottle of beer';
+    expect(BottleVerse._getBottles(1)).toBe(expected);
+  });
+
+  test('_getNumber no', () => {
+    const expected ='no more bottles of beer';
+    expect(BottleVerse._getBottles(0)).toBe(expected);
+  });
+
+  test('_getNumber negative', () => {
+    const expected ='99 bottles of beer';
+    expect(BottleVerse._getBottles(-1)).toBe(expected);
+  });
+
 
   test('verse general rule upper bound', () => {
     const expected =
