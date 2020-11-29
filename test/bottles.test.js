@@ -23,13 +23,6 @@ describe('ngettext', () => {
 describe('BottleVerse', () => {
   testPlaysVerseRole(BottleVerse);
 
-
-  test('String title', () => {
-    const expected = 'Ben l’architecte';
-    expect('ben l’architecte'.title()).toBe(expected);
-  });
-
-
   test('_getNumber many', () => {
     const expected ='2 bottles of beer';
     expect(BottleVerse._getBottles(2)).toBe(expected);
@@ -59,7 +52,7 @@ describe('BottleVerse', () => {
       '98 bottles of beer on the wall.\n';
     expect(BottleVerse.lyrics(99)).toBe(expected);
   });
-  
+
   test('verse 7', () => {
     const expected =
       '7 bottles of beer on the wall, ' +
